@@ -1,0 +1,18 @@
+<div class="container-fluid py-3">
+  <div class="row justify-content-center" *ngIf="!fetching else fetchingForecast">
+    <div class="col-lg-3 weather-col" *ngFor="let weather of forecast?.daily">
+      <h1 class="weather-forecast-temp text-center">{{weather.dt * 1000 | date: 'E'}}</h1>
+      <h2 class="weather-forecast-title text-center">{{(weather.temp.day-273 | number : '1.0-0')}}º<span
+          class="weather-forecast-title-separator">/{{(weather.temp.night-273 | number: '1.0-0')}}º</span></h2>
+      <img src="http://openweathermap.org/img/wn/{{weather.weather[0].icon}}@2x.png"
+        class="d-block img-fluid mx-auto weather-forecast-img">
+    </div>
+  </div>
+  <ng-template #fetchingForecast>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border text-white" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
+</div>

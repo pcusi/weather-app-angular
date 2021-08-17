@@ -1,0 +1,87 @@
+<header class="weather-navbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 d-flex justify-content-center">
+        <form #searchForm="ngForm" class="w-50">
+          <div class="form-group">
+            <input type="search" class="form-control search-country" [(ngModel)]="seeker" name="seeker"
+              placeholder="What country are you searching?" required autocomplete="off">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container mt-2" *ngIf="seeker.length > 3">
+  <div class="row">
+    <div class="col-lg-12 d-flex justify-content-center">
+      <div class="card search-card w-50">
+        <ul class="nav flex-column" *ngIf="country?.countries.length > 1; else notFound">
+          <li class="nav-item" *ngFor="let c of country?.countries | searchFilter: seeker | slice: 0:20"
+            (click)="getCountryCoords(c.coord.lat, c.coord.lon)">
+            <a class="nav-link">{{c.name}}</a>
+          </li>
+        </ul>
+        <ng-template #notFound>
+          <p class="text-center">Not found.</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container py-3">
+  <!-- weather ui -->
+  <div class="container-fluid p-0" [@fade] *ngIf="!fetching else fetchingCountry">
+    <div class="row my-5">
+      <div class="col-lg-12 col-md-12">
+        <div class="row">
+          <div class="col-lg-4 col-md-12 weather-secondary-col mb-2">
+            <div class="card">
+              <div class="card-body weather-secondary"></div>
+              <img src="http://openweathermap.org/img/wn/{{weather?.weather[0].icon}}@2x.png"
+                class="d-block img-fluid mx-auto weather-img" loading="lazy">
+              <div class="weather-circle-inner">
+                <h2 class="weather-title text-sm-center text-xs-center text-lg-center">{{weather?.name}}</h2>
+                <h1 class="weather-temp text-center">{{(weather?.main.temp-273 | number : '1.0-0')}}º</h1>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 weather-secondary-col mb-2">
+            <div class="card">
+              <div class="card-body weather-secondary"></div>
+              <img src="http://openweathermap.org/img/wn/{{weather?.weather[0].icon}}@2x.png"
+                class="d-block img-fluid mx-auto weather-img" loading="lazy">
+              <div class="weather-circle-inner">
+                <h2 class="weather-title text-center">Feels Like</h2>
+                <h1 class="weather-temp text-center">{{(weather?.main.feels_like-273 | number : '1.0-0')}}º</h1>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 weather-secondary-col">
+            <div class="card">
+              <div class="card-body weather-secondary"></div>
+              <img src="http://openweathermap.org/img/wn/{{weather?.weather[0].icon}}@2x.png"
+                class="d-block img-fluid mx-auto weather-img" loading="lazy">
+              <div class="weather-circle-inner">
+                <h2 class="weather-title text-center">Humidity</h2>
+                <h1 class="weather-temp text-center">{{weather?.main.humidity}}%</h1>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 mb-2">
+            <div class="card weather-secondary h-100">
+              <app-weather-forecast [@fade] [longitude]="longitude" [latitude]="latitude"></app-weather-forecast>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #fetchingCountry>
+    <div class="weather-container">
+      <p class="weather-fetching text-center">We are loading your currently weather, wait us. 🙏🏼</p>
+    </div>
+  </ng-template>
+</div>
