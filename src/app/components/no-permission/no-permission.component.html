@@ -1,1 +1,21 @@
-<p>no-permission works!</p>
+<div class="no__permission">
+  <div class="no__permission__items">
+    <h1 class="no__permission__title">We can't find anything, we don't have the totally permission to do this.</h1>
+    <ng-lottie [options]="options" [styles]="styles"></ng-lottie>
+  </div>
+  <div class="overlay__permission" (click)="dismiss()" *ngIf="showModal">
+    <div class="overlay__modal__permission">
+      <button class="btn btn-close close" (click)="dismiss()"></button>
+      <h1 class="overlay__modal__title">This is only a recordatory</h1>
+      <p class="overlay__modal__subtitle">If you regret, you can ask again your currently weather 😳 🤙🏻</p>
+      <p class="overlay__modal__subtitle">Follow the next steps</p>
+      <ol style="margin-bottom: 32px;">
+        <li style="margin-bottom: 32px;"><strong>First step:</strong> Change the permission to ask, you can find it next to the link</li>
+        <img src="assets/img/geolocation.png" class="d-block img-fluid overlay__img__step">
+      </ol>
+      <p class="overlay__modal__subtitle">Maybe you are saying now in your head, <strong>it is only 1 step?</strong></p>
+      <p class="overlay__modal__title__end">Off course, is a simple project! 😆</p>
+    </div>
+  </div>
+</div>
+

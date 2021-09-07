@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { LottieModule } from 'ngx-lottie';
+
+import player from 'lottie-web';
 
 import { AppComponent } from './app.component';
 import { GeolocationComponent } from './components/geolocation/geolocation.component';
@@ -20,6 +23,9 @@ import { SearchPipe } from './shared';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/shared/header/header.component';
 
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   declarations: [
@@ -40,7 +46,8 @@ import { HeaderComponent } from './components/shared/header/header.component';
     ReactiveFormsModule,
     FontAwesomeModule,
     Ng2SearchPipeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [
     GeolocationPermissionGuard

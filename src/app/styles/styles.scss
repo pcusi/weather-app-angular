@@ -1,5 +1,5 @@
 @import "variables";
-
+//light theme
 .light-theme {
   background: $light-blue-00;
   .weather-fetching {
@@ -44,7 +44,6 @@
         height: 1920px;
       }
     }
-
   }
   .search-country {
     background: $white-00;
@@ -180,47 +179,6 @@
     border-radius: 24px;
     border: none;
   }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    .weather-secondary-col {
-      .card {
-        overflow: hidden;
-        .weather-circle-inner {
-          position: absolute;
-          width: 800px;
-        }
-      }
-    }
-    .weather-header-cut {
-      .weather-header-animation {
-        top: -400px;
-        width: 100%;
-        height: 700px;
-      }
-    }
-  }
-  @media (min-width: 328px) and (max-width: 576px) {
-    .weather-header-cut {
-      height: 200px;
-      .weather-header-animation {
-        top: -50px;
-        width: 100%;
-        height: 330px;
-        border-radius: 0;
-      }
-      .weather-navbar {
-        position: absolute;
-        z-index: 5;
-        bottom: 5%;
-        padding: 16px 0;
-        width: 100%;
-        .search-country {
-          width: 180px !important;
-          margin: 0 auto;
-          display: block;
-        }
-      }
-    }
-  }
   .weather-col {
     position: relative;
     max-height: 300px;
@@ -266,8 +224,178 @@
     color: $dark-01;
     margin-right: 16px;
   }
-}
+  .no__permission {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    .no__permission__items {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      .no__permission__title {
+        text-align: center;
+      }
+    }
+    .overlay__permission {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      background: rgb(0, 0, 0, 0.5);
+      translate: all 500ms;
+      .overlay__modal__permission {
+        animation-name: showModal;
+        animation-duration: 600ms;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 650px;
+        min-height: 650px;
+        background: $white-01;
+        border-radius: 24px;
+        padding: 32px;
+        .close {
+          position: absolute;
+          right: 32px;
+        }
+        .overlay__modal__title {
+          font-size: 32px;
+          text-align: center;
+          margin-bottom: 32px;
+        }
+        .overlay__modal__title__end {
+          font-size: 28px;
+          text-align: center;
+          margin-bottom: 32px;
+        }
+        .overlay__modal__subtitle {
+          font-size: 16px;
+          text-align: start;
+          margin-bottom: 32px;
+        }
+        .nav-link {
+          list-style-type: armenian;
+        }
+      }
+    }
+  }
+  @keyframes showModal {
+    0% {
+      opacity: 0;
+    }
 
+    50% {
+      opacity: 0.5;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .weather-secondary-col {
+      .card {
+        overflow: hidden;
+        .weather-circle-inner {
+          position: absolute;
+          width: 800px;
+        }
+      }
+    }
+    .weather-header-cut {
+      .weather-header-animation {
+        top: -400px;
+        width: 100%;
+        height: 700px;
+      }
+    }
+  }
+  @media (min-width: 328px) and (max-width: 576px) {
+    .weather-header-cut {
+      height: 200px;
+      .weather-header-animation {
+        top: -50px;
+        width: 100%;
+        height: 330px;
+        border-radius: 0;
+      }
+      .weather-navbar {
+        position: absolute;
+        z-index: 5;
+        bottom: 5%;
+        padding: 16px 0;
+        width: 100%;
+        .search-country {
+          width: 180px !important;
+          margin: 0 auto;
+          display: block;
+        }
+      }
+    }
+    .no__permission {
+      .overlay__permission {
+        display: none;
+        .overlay__modal__permission {
+          width: 100%;
+          height: 60%;
+          .overlay__modal__title {
+            font-size: 20px;
+            margin-bottom: 8px;
+          }
+          .overlay__modal__title__end {
+            font-size: 16px;
+            margin-bottom: 8px;
+          }
+          .overlay__modal__subtitle {
+            font-size: 12px;
+            margin-bottom: 8px;
+          }
+          ol {
+            margin-bottom: 8px;
+            .overlay__img__step {
+              width: 80%;
+              height: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: 1000px) and (max-width: 1366px) {
+    .no__permission {
+      .overlay__permission {
+        .overlay__modal__permission {
+          min-height: auto;
+          .close {
+            position: absolute;
+            right: 32px;
+          }
+          .overlay__modal__title {
+            font-size: 24px;
+            margin-bottom: 16px;
+          }
+          .overlay__modal__title__end {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 16px;
+          }
+          .overlay__modal__subtitle {
+            font-size: 16px;
+            text-align: start;
+            margin-bottom: 16px;
+          }
+          ol {
+            .overlay__img__step {
+              display: none !important;
+              width: 40%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 //dark theme
 .dark-theme {
   background: $dark-00;
@@ -298,7 +426,6 @@
       backdrop-filter: blur(40px);
       background: black url("../../assets/img/moon_texture.jpeg") repeat;
     }
-
   }
   .weather-fetching {
     color: $white-01;
@@ -406,53 +533,6 @@
     border-radius: 24px;
     border: none;
   }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    .weather-secondary-col {
-      .card {
-        overflow: hidden;
-        .weather-circle-inner {
-          position: absolute;
-          width: 800px;
-        }
-      }
-    }
-    .weather-header-cut {
-      .weather-header-animation {
-        top: -400px;
-        width: 100%;
-        height: 700px;
-      }
-    }
-  }
-  @media (min-width: 328px) and (max-width: 576px) {
-    .weather-header-cut {
-      height: 200px;
-      .weather-header-animation {
-        top: -50px;
-        width: 100%;
-        height: 330px;
-        border-radius: 0;
-      }
-      .weather-navbar {
-        position: absolute;
-        z-index: 5;
-        bottom: 5%;
-        padding: 16px 0;
-        width: 100%;
-        .search-country {
-          width: 180px !important;
-          margin: 0 auto;
-          display: block;
-        }
-      }
-    }
-    .weather-moon {
-      color: $dark-01 !important;
-    }
-    .weather-sun {
-      color: $dark-01 !important;
-    }
-  }
   .weather-col {
     position: relative;
     max-height: 300px;
@@ -533,6 +613,170 @@
           background: $dark-00;
           width: 100%;
           border-radius: 0 0 24px 24px;
+        }
+      }
+    }
+  }
+  .no__permission {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    .no__permission__items {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      .no__permission__title {
+        text-align: center;
+      }
+    }
+    .overlay__permission {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      background: rgb(0, 0, 0, 0.5);
+      translate: all 500ms;
+      .overlay__modal__permission {
+        animation-name: showModal;
+        animation-duration: 600ms;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 550px;
+        height: auto;
+        background: $white-01;
+        border-radius: 24px;
+        padding: 32px;
+        .close {
+          position: absolute;
+          right: 32px;
+        }
+        .overlay__modal__title {
+          font-size: 32px;
+          text-align: center;
+          margin-bottom: 32px;
+        }
+        .overlay__modal__title__end {
+          font-size: 28px;
+          text-align: center;
+          margin-bottom: 32px;
+        }
+        .overlay__modal__subtitle {
+          font-size: 16px;
+          text-align: start;
+          margin-bottom: 32px;
+        }
+        .nav-link {
+          list-style-type: armenian;
+        }
+      }
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .weather-secondary-col {
+      .card {
+        overflow: hidden;
+        .weather-circle-inner {
+          position: absolute;
+          width: 800px;
+        }
+      }
+    }
+    .weather-header-cut {
+      .weather-header-animation {
+        top: -400px;
+        width: 100%;
+        height: 700px;
+      }
+    }
+  }
+  @media (min-width: 328px) and (max-width: 576px) {
+    .weather-header-cut {
+      height: 200px;
+      .weather-header-animation {
+        top: -50px;
+        width: 100%;
+        height: 330px;
+        border-radius: 0;
+      }
+      .weather-navbar {
+        position: absolute;
+        z-index: 5;
+        bottom: 5%;
+        padding: 16px 0;
+        width: 100%;
+        .search-country {
+          width: 180px !important;
+          margin: 0 auto;
+          display: block;
+        }
+      }
+    }
+    .weather-moon {
+      color: $dark-01 !important;
+    }
+    .weather-sun {
+      color: $dark-01 !important;
+    }
+    .no__permission {
+      .overlay__permission {
+        display: none;
+        .overlay__modal__permission {
+          width: 100%;
+          height: 60%;
+          .overlay__modal__title {
+            font-size: 20px;
+            margin-bottom: 8px;
+          }
+          .overlay__modal__title__end {
+            font-size: 16px;
+            margin-bottom: 8px;
+          }
+          .overlay__modal__subtitle {
+            font-size: 12px;
+            margin-bottom: 8px;
+          }
+          ol {
+            margin-bottom: 8px;
+            .overlay__img__step {
+              width: 80%;
+              height: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: 1000px) and (max-width: 1366px) {
+    .no__permission {
+      .overlay__permission {
+        .overlay__modal__permission {
+          min-height: auto;
+          .close {
+            position: absolute;
+            right: 32px;
+          }
+          .overlay__modal__title {
+            font-size: 24px;
+            margin-bottom: 16px;
+          }
+          .overlay__modal__title__end {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 16px;
+          }
+          .overlay__modal__subtitle {
+            font-size: 16px;
+            text-align: start;
+            margin-bottom: 16px;
+          }
+          ol {
+            .overlay__img__step {
+              display: none !important;
+              width: 40%;
+            }
+          }
         }
       }
     }
