@@ -1,24 +1,53 @@
 @import "variables";
 
 .light-theme {
-  background-color: $light-blue-00;
-  .weather-navbar {
-    background: $light-blue-02;
-    padding: 16px 0;
-  }
+  background: $light-blue-00;
   .weather-fetching {
     color: $dark-01;
     font-weight: bold;
     font-size: 32px;
   }
-  .weather-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  .weather-header-cut {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    .weather-navbar {
+      position: absolute;
+      z-index: 5;
+      bottom: 15%;
+      padding: 16px 0;
+      width: 100%;
+    }
+    .weather-header-animation {
+      position: absolute;
+      z-index: 2;
+      top: -1650px;
+      width: 100%;
+      height: 1920px;
+      overflow: hidden;
+      left: 0;
+      border-radius: 100%;
+      box-shadow: 0px 4px 10px 10px rgba(65, 162, 198, 0.25);
+      backdrop-filter: blur(40px);
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 10%;
+        right: 9%;
+        background: url(https://www.tonytextures.com/free-texture-gallery/sky/Sky_Clouds_Photo_Texture_A_P1119218.JPG);
+        background-size: cover;
+        background-repeat: no-repeat;
+        border: 1px solid red;
+        width: 100%;
+        height: 1920px;
+      }
+    }
+
   }
   .search-country {
-    background: $light-blue-00;
+    background: $white-00;
     border: none;
     border-radius: 24px;
     font-weight: 400;
@@ -161,6 +190,36 @@
         }
       }
     }
+    .weather-header-cut {
+      .weather-header-animation {
+        top: -400px;
+        width: 100%;
+        height: 700px;
+      }
+    }
+  }
+  @media (min-width: 328px) and (max-width: 576px) {
+    .weather-header-cut {
+      height: 200px;
+      .weather-header-animation {
+        top: -50px;
+        width: 100%;
+        height: 330px;
+        border-radius: 0;
+      }
+      .weather-navbar {
+        position: absolute;
+        z-index: 5;
+        bottom: 5%;
+        padding: 16px 0;
+        width: 100%;
+        .search-country {
+          width: 180px !important;
+          margin: 0 auto;
+          display: block;
+        }
+      }
+    }
   }
   .weather-col {
     position: relative;
@@ -199,21 +258,47 @@
     }
   }
   .weather-moon {
-    color: $light-blue-00;
+    color: $dark-01;
     margin-left: 16px;
+    margin-right: 16px;
   }
   .weather-sun {
-    color: $light-blue-00;
+    color: $dark-01;
     margin-right: 16px;
   }
 }
 
 //dark theme
 .dark-theme {
-  background-color: $dark-00;
-  .weather-navbar {
-    background: $dark-01;
-    padding: 16px 0;
+  background: $dark-00;
+  .weather-header-cut {
+    width: 100%;
+    position: relative;
+    overflow-y: hidden;
+    height: 300px;
+
+    .weather-navbar {
+      position: absolute;
+      z-index: 5;
+      bottom: 15%;
+      padding: 16px 0;
+      width: 100%;
+    }
+    .weather-header-animation {
+      position: absolute;
+      z-index: 2;
+      top: -1650px;
+      width: 100%;
+      height: 1920px;
+      overflow: hidden;
+      left: 0;
+      border-radius: 100%;
+      transition-duration: 3s;
+      box-shadow: 0px 4px 10px 10px rgba(215, 215, 215, 0.25);
+      backdrop-filter: blur(40px);
+      background: black url("../../assets/img/moon_texture.jpeg") repeat;
+    }
+
   }
   .weather-fetching {
     color: $white-01;
@@ -331,6 +416,42 @@
         }
       }
     }
+    .weather-header-cut {
+      .weather-header-animation {
+        top: -400px;
+        width: 100%;
+        height: 700px;
+      }
+    }
+  }
+  @media (min-width: 328px) and (max-width: 576px) {
+    .weather-header-cut {
+      height: 200px;
+      .weather-header-animation {
+        top: -50px;
+        width: 100%;
+        height: 330px;
+        border-radius: 0;
+      }
+      .weather-navbar {
+        position: absolute;
+        z-index: 5;
+        bottom: 5%;
+        padding: 16px 0;
+        width: 100%;
+        .search-country {
+          width: 180px !important;
+          margin: 0 auto;
+          display: block;
+        }
+      }
+    }
+    .weather-moon {
+      color: $dark-01 !important;
+    }
+    .weather-sun {
+      color: $dark-01 !important;
+    }
   }
   .weather-col {
     position: relative;
@@ -371,6 +492,7 @@
   .weather-moon {
     color: $white-00;
     margin-left: 16px;
+    margin-right: 16px;
   }
   .weather-sun {
     color: $white-00;
